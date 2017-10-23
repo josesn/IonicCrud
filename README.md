@@ -1,0 +1,3 @@
+# ProjetoIonic
+# ProjetoTeste
+# IonicCrud
