@@ -1,0 +1,37 @@
+<!--
+  Generated template for the Formulario page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Criar Hospedagem</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+        <ion-item>
+        <ion-label color="primary" floating>Nome da Empresa</ion-label>
+        <ion-input type="text" [(ngModel)]="nome"></ion-input>
+        </ion-item>
+        <ion-item>
+        <ion-label color="primary" floating>Descrição</ion-label>
+        <ion-textarea type="text" [(ngModel)]="descricao" ></ion-textarea>
+        </ion-item>
+        <ion-item>
+        <ion-label color="primary" floating>Endereço</ion-label>
+        <ion-input type="text" [(ngModel)]="endereco" ></ion-input>
+        </ion-item>
+        <ion-item>
+        <ion-label color="primary" floating>Email para Contato</ion-label>
+        <ion-input type="text" [(ngModel)]="email" ></ion-input><br/>
+        </ion-item>
+
+        <button class="envia-botao" ion-button round color="primary" (click)="criaHospedagem(nome, descricao, endereco, email)">Enviar</button>
+      
+</ion-content>

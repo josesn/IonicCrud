@@ -15,10 +15,22 @@ import 'rxjs/add/operator/map';
 export class HospedagemService {
 
   private urlBase = 'http://localhost:8000'
-  private urlHosp = '/hospedagem'
+  private urlHosp = '/empresa'
+  private urlToken = '/api-token-auth/'
   
   constructor(public http: Http,) {
     
+  }
+
+  public pegarToken(username, password) {
+    let body = JSON.stringify({
+      username: username,
+      password: password,
+    })
+    let headers = new Headers({'Content-Type': 'application/json', 'Authorization':'Token f437dfa53387290d34dc4f3263f1361f077ae052'})
+    let options = new RequestOptions({ headers: headers});
+    return this.http.post(this.urlBase + this.urlToken, body, options)
+      .map((response:Response)=>response.json());
   }
 
   public getAllHospedagem(): Observable<any> {
@@ -34,7 +46,7 @@ export class HospedagemService {
   }
 
   public removeHospedagem(id): Observable<any> {
-    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let headers = new Headers({ 'Content-Type': 'application/json', 'Authorization': 'Token f437dfa53387290d34dc4f3263f1361f077ae052'  });
     let options = new RequestOptions({ headers: headers });
     return this.http.delete(this.urlBase + this.urlHosp + '/' + id + '/' , options)
             .map((response:Response)=>response.json());
@@ -65,7 +77,7 @@ export class HospedagemService {
     });
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
-    return this.http.post(this.urlBase, body, options)
+    return this.http.post(this.urlBase + this.urlHosp + '/', body, options)
             .map((response:Response)=>response.json());
     
   }

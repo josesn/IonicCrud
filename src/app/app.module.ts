@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { HttpModule } from '@angular/http';
 
+import { NativeStorage } from '@ionic-native/native-storage';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -33,6 +34,7 @@ import { HospedagemService } from '../providers/hospedagem/hospedagem';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     HospedagemService,
+    NativeStorage,
   ]
 })
 export class AppModule {}

@@ -14,11 +14,19 @@
 
 
 <ion-content padding>
-    
+
+        <ion-item>
         <ion-input type="text" [(ngModel)]="nome"placeholder="Empresa"></ion-input>
+        </ion-item>
+        <ion-item>
         <ion-textarea type="text" [(ngModel)]="descricao" placeholder="descricao"></ion-textarea>
+        </ion-item>
+        <ion-item>
         <ion-input type="text" [(ngModel)]="endereco" placeholder="Endereço"></ion-input>
+        </ion-item>
+        <ion-item>
         <ion-input type="text" [(ngModel)]="email" placeholder="Email para contato"></ion-input><br/>
+        </ion-item>
 
         <button ion-button round color="primary" (click)="editarHospedagem(hosp, nome, descricao, endereco, email)">Editar</button>
       

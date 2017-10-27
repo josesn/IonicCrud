@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController, AlertController } from 'ionic-angular';
 import { HospedagemService } from '../../providers/hospedagem/hospedagem';
 import { EditahospPage } from '../editahosp/editahosp';
+import { FormularioPage } from '../formulario/formulario';
 
 /**
  * Generated class for the Hospedagem page.
@@ -62,15 +63,10 @@ export class HospedagemPage {
 
 
 
-
-
-
   public getHospAll() {
     this.hospService.getAllHospedagem()
     .subscribe(
       (hospedagens) => {
-        
-        
         this.hospedagens = hospedagens.lista;
       },
       (erros) => {
@@ -103,7 +99,7 @@ export class HospedagemPage {
   }
 
   private cadastraHospedagem(nome, descricao, endereco, email){
-    console.log('cadastrando');
+    this.navCtrl.push('FormularioPage');
   }
 
   
