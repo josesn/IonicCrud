@@ -11,6 +11,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 
 import { HospedagemService } from '../providers/hospedagem/hospedagem';
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { HospedagemService } from '../providers/hospedagem/hospedagem';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     HospedagemService,
     NativeStorage,
+    ScreenOrientation,
   ]
 })
 export class AppModule {}

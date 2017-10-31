@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams, ToastController, AlertController }
 import { HospedagemService } from '../../providers/hospedagem/hospedagem';
 import { EditahospPage } from '../editahosp/editahosp';
 import { FormularioPage } from '../formulario/formulario';
+import { NativeStorage } from '@ionic-native/native-storage';
+
 
 /**
  * Generated class for the Hospedagem page.
@@ -23,6 +25,7 @@ export class HospedagemPage {
               public hospService: HospedagemService, 
               public toastCtrl:ToastController,
               public alertCtrl: AlertController,
+              public nativeStorage: NativeStorage,
               ){
   }
 
@@ -64,6 +67,7 @@ export class HospedagemPage {
 
 
   public getHospAll() {
+    
     this.hospService.getAllHospedagem()
     .subscribe(
       (hospedagens) => {
@@ -90,6 +94,14 @@ export class HospedagemPage {
       (erros) => {
         console.log('Erros', erros);
       });   
+  }
+
+  public showStorage() {
+    this.nativeStorage.getItem('token')
+    .then(
+      data => alert(data),
+      error => console.error(error)
+    );
   }
   
   ionViewDidLoad() {

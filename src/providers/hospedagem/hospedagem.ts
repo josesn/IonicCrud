@@ -22,12 +22,14 @@ export class HospedagemService {
     
   }
 
+  
+
   public pegarToken(username, password) {
     let body = JSON.stringify({
       username: username,
       password: password,
     })
-    let headers = new Headers({'Content-Type': 'application/json', 'Authorization':'Token f437dfa53387290d34dc4f3263f1361f077ae052'})
+    let headers = new Headers({'Content-Type': 'application/json'})
     let options = new RequestOptions({ headers: headers});
     return this.http.post(this.urlBase + this.urlToken, body, options)
       .map((response:Response)=>response.json());

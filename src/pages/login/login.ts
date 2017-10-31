@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { HospedagemService } from '../../providers/hospedagem/hospedagem';
 import { HospedagemPage } from '../hospedagem/hospedagem';
 import { NativeStorage } from '@ionic-native/native-storage';
+
+
 
 
 /**
@@ -19,29 +21,60 @@ import { NativeStorage } from '@ionic-native/native-storage';
 })
 export class LoginPage {
 
+  public autenticado = false;
+
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               public hospService: HospedagemService,
-              private nativeStorage: NativeStorage) {
+              private nativeStorage: NativeStorage,
+              private alertCtrl: AlertController,
+              ) {
   }
 
-  login(username, password) {
+  presentAlert() {
+    const alert = this.alertCtrl.create({
+      title: 'Falha no Login',
+      subTitle: 'Usuário não encontrado!!',
+      buttons: ['Ok']
+    });
+    alert.present();
+  }
+
+  
+
+  login(username, password){
     this.hospService.pegarToken(username, password)
       .subscribe(
         (data) => {
-          data;
           console.log(data);
-          this.nativeStorage.setItem('tokens', {token: data })
-          .then(
-            () => console.log('Token registrado'),
-            error => console.error('Error ao registrar', error)
-          );
-        }
-      )
-      this.navCtrl.push("HospedagemPage");
-  }
+          this.navCtrl.push("HospedagemPage");         
+        },
+        (error) => {
+          this.presentAlert();
+          
+        });  
+  }  
+  
+
+  /*showStorage(username): Promise<any>{
+    this.nativeStorage.getItem(username)
+    .then((data)=>{
+      
+      alert(data.token);
+
+      this.nativeStorage.setItem(username, {
+        token: password,
+      })
+      .then(
+        () => 
+        this.presentAlert()
+      )       
+    })
+    return null;
+  }*/
 
   ionViewDidLoad() {
+    
     console.log('ionViewDidLoad LoginPage');
   }
 
